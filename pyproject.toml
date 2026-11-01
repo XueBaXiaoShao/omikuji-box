@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nonebot-plugin-omikuji-box"
+version = "0.1.0"
+description = "おみくじ：中文日式抽签与柚子社主题和风签纸图片"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+dependencies = [
+    "nonebot2[fastapi]>=2.4.0",
+    "nonebot-adapter-onebot>=2.4.0",
+    "Pillow>=10.0",
+    "httpx>=0.27",
+]
+
+[tool.setuptools]
+packages = ["omikuji_box"]
+
+[tool.setuptools.package-data]
+omikuji_box = ["assets/fonts/*.otf"]
