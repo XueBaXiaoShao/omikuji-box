@@ -133,6 +133,13 @@ def _enabled_for_event(event: MessageEvent) -> bool:
 
 
 
+def _help_text() -> str:
+    return """【おみくじ】
+- /omikuji（/おみくじ、/御神籤）—— 抽今日御神签（每天固定）
+- /omikuji settings JP on|off —— 切换中文/日文
+- /omikuji reset @某人|<QQ号> —— 重置今日结果（管理员）"""
+
+
 async def _handle_settings(
     matcher: Matcher, user_id: int, value: str
 ) -> None:
@@ -173,6 +180,8 @@ async def handle_omikuji(
     user_id = int(getattr(event, "user_id", 0))
     text = (arg.extract_plain_text() or "").strip()
     lower = text.lower()
+    if lower in ("help", "帮助", "用法"):
+        await matcher.finish(_help_text())
     is_reset = (
         lower == "reset"
         or lower.startswith("reset ")
